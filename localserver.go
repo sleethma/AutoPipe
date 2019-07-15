@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func main() {
+func serv() {
 	// listen
 	li, err := net.Listen("tcp", ":8080")
 	if err != nil {
@@ -37,7 +37,7 @@ func handle(conn net.Conn) {
 	for scanner.Scan() {
 		ln := scanner.Text()
 		fmt.Println(ln)
-		fmt.Fprintln(conn, "I heard you say: %v\n", ln)
+		fmt.Fprintf(conn, "I heard you say: %v\n", ln)
 	}
 	defer conn.Close()
 }
